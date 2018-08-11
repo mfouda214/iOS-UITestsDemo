@@ -31,6 +31,16 @@ class UITestsDemoUITests: XCTestCase {
     func testExample() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let app = XCUIApplication()
+        app.navigationBars["Links"].buttons["Delete All"].tap()
+        app.navigationBars["Links"].buttons["Add Link"].tap()
+        
+        let newLinkAlert = app.alerts["New Link"]
+        newLinkAlert.collectionViews.textFields["Link"].typeText("example.com")
+        newLinkAlert.buttons["Add"].tap()
+        
+        XCTAssert(app.staticTexts["example.com"].exists)
     }
     
 }
